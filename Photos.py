@@ -1,16 +1,14 @@
+import pandas as pd
+dft = pd.read_csv('1.csv')
+subset = dft[['id', 'cs', 'ori']]
+dataframes = [tuple(x) for x in subset.values]
 
-dataframes = [
-    (1, 0.7, 'V'),
-    (2, 0.6, 'V'),
-    (5, 0.2, 'V'),
-    (3, 0.5, 'H'),
-    (4, 0.9, 'H')
-]
 
 horizontal = []
 vertical = []
 fn = len
 slideshow = []
+
 
 def seperator(df):
     for d in df:
@@ -25,7 +23,6 @@ def seperator(df):
     if fn(vertical) % 2 != 0:
         vertical.pop(fn(vertical) - 1)
     pass
-
 
 
 def vertical_slides(vertical):
@@ -60,6 +57,10 @@ def update_slideshow(slideshow):
     for t in slideshow:
         slides.append(t[0])
 
+    with open('1.txt', 'w') as f:
+        f.write("%s\n" % str(len(slides)))
+        for item in slides:
+            f.write("%s\n" % item)
     return slides
 
 
